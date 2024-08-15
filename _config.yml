@@ -1,0 +1,14 @@
+title: Urban Explorer Blog
+description: Exploring city life, design, and photography
+url: "https://urbanexplorer.blog"
+author: Urban Explorer
+
+permalink: /:year/:month/:day/:title/
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
