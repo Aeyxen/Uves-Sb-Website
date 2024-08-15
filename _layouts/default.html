@@ -13,7 +13,7 @@
             --dropdown-bg: #fff;
             --dropdown-border: #ccc;
         }
-    
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
             background-color: var(--bg-color);
@@ -22,58 +22,58 @@
             margin: 0;
             padding: 0;
         }
-    
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
-    
+
         header {
             margin-bottom: 40px;
             border-bottom: 2px solid var(--accent-color);
             padding-bottom: 20px;
         }
-    
+
         header h1 {
             margin-bottom: 10px;
             color: var(--accent-color);
         }
-    
+
         header nav {
             margin-top: 10px;
         }
-    
+
         header nav a {
             margin-right: 15px;
             color: var(--text-color);
             text-decoration: none;
             font-weight: bold;
         }
-    
+
         .post {
             margin-bottom: 40px;
             border-bottom: 1px solid var(--tag-bg);
             padding-bottom: 20px;
         }
-    
+
         .post-title {
             font-size: 24px;
             margin-bottom: 10px;
             font-weight: 600;
             color: var(--accent-color);
         }
-    
+
         .post-meta {
             font-size: 14px;
             color: var(--accent-color);
             margin-bottom: 15px;
         }
-    
+
         .post-content {
             margin-bottom: 15px;
         }
-    
+
         .tag, .category {
             background-color: var(--tag-bg);
             padding: 3px 8px;
@@ -83,7 +83,7 @@
             display: inline-block;
             margin-bottom: 5px;
         }
-    
+
         .read-more {
             display: inline-block;
             margin-top: 10px;
@@ -91,7 +91,7 @@
             text-decoration: none;
             font-weight: bold;
         }
-    
+
         footer {
             margin-top: 40px;
             text-align: center;
@@ -99,19 +99,19 @@
             border-top: 1px solid var(--tag-bg);
             padding-top: 20px;
         }
-    
+
         #filter-options {
             display: flex;
             gap: 10px;
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
-    
+
         .dropdown {
             position: relative;
             display: inline-block;
         }
-    
+
         .dropdown-toggle {
             background-color: var(--accent-color);
             color: var(--bg-color);
@@ -120,7 +120,7 @@
             cursor: pointer;
             border-radius: 4px;
         }
-    
+
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -133,13 +133,13 @@
             overflow-y: auto;
             border-radius: 4px;
         }
-    
+
         .dropdown-menu label {
             display: block;
             padding: 8px 12px;
             cursor: pointer;
         }
-    
+
         .dropdown-menu label:hover {
             background-color: var(--tag-bg);
         }
@@ -187,14 +187,14 @@
                 dropdown.className = 'dropdown';
                 dropdown.innerHTML = `
                     <button class="dropdown-toggle">Filter by ${type}</button>
-                    <div class="dropdown-menu" id="${type}-menu"></div>
+                    <div class="dropdown-menu" id="${type.toLowerCase()}-menu"></div>
                 `;
 
                 const menu = dropdown.querySelector('.dropdown-menu');
                 items.forEach(item => {
                     const label = document.createElement('label');
                     label.innerHTML = `
-                        <input type="checkbox" value="${item}" data-filter-type="${type}"> ${item}
+                        <input type="checkbox" value="${item}" data-filter-type="${type.toLowerCase()}"> ${item}
                     `;
                     menu.appendChild(label);
                 });
@@ -208,8 +208,8 @@
             }
 
             function applyFilters() {
-                const selectedTags = Array.from(document.querySelectorAll('#tag-menu input:checked')).map(input => input.value);
-                const selectedCategories = Array.from(document.querySelectorAll('#category-menu input:checked')).map(input => input.value);
+                const selectedTags = Array.from(document.querySelectorAll('#tags-menu input:checked')).map(input => input.value);
+                const selectedCategories = Array.from(document.querySelectorAll('#categories-menu input:checked')).map(input => input.value);
 
                 blogPosts.forEach(post => {
                     const postTags = Array.from(post.querySelectorAll('.tag')).map(tag => tag.textContent.trim());
@@ -228,16 +228,6 @@
 
             // Add event listeners for filter checkboxes
             filterOptions.addEventListener('change', applyFilters);
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
         });
     </script>
 </body>
