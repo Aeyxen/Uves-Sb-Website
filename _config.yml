@@ -1,6 +1,7 @@
 title: Urban Explorer Blog
 description: Exploring city life, design, and photography
-url: "https://urbanexplorer.blog"
+url: "https://aeyxen.github.io"
+baseurl: "/Uves-Sb-Website"
 author: Urban Explorer
 
 permalink: /:year/:month/:day/:title/
@@ -12,3 +13,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
