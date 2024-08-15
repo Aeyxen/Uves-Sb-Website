@@ -6,17 +6,18 @@ title: Home
 <div class="posts">
   {% for post in site.posts %}
     <article class="post">
-      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
-      <p class="post-meta">{{ post.date | date: "%B %d, %Y" }} • 
+      <h2 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+      <p class="post-meta">{{ post.date | date: "%B %d, %Y" }}</p>
+      <div class="post-tags">
         {% for tag in post.tags %}
           <span class="tag">{{ tag }}</span>
         {% endfor %}
-      </p>
-      <p class="post-categories">
+      </div>
+      <div class="post-categories">
         {% for category in post.categories %}
           <span class="category">{{ category }}</span>
         {% endfor %}
-      </p>
+      </div>
       <div class="post-content">
         {{ post.content | strip_html | truncatewords: 50 }}
       </div>
